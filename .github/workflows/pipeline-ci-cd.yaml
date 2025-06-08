@@ -1,9 +1,6 @@
 # .github/workflows/pipeline.yml
 name: CI Pipeline
 
-env:
-  ECR_REPOSITORY: ${{ secrets.ECR_NAME }}
-
 on:
   workflow_dispatch:
   push:
@@ -66,7 +63,7 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     uses: VotingApp-DevOps-288126-ORT/voting.infra/.github/workflows/build-push-docker-image.yaml@prod
     with:
-      ecr_repository: ${{ env.ECR_REPOSITORY }}
+      ecr_repository: ${{ secrets.ECR_NAME }}
       tag: ${{ github.sha }}
 
 
