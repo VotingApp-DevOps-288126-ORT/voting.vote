@@ -64,7 +64,6 @@ jobs:
     uses: VotingApp-DevOps-288126-ORT/voting.infra/.github/workflows/build-push-docker-image.yaml@prod
     with:
       tag: ${{ github.sha }}
-    secrets:
-      ECR_REPOSITORY: ${{ secrets.ECR_NAME }}
+    secrets: inherit
 
 
