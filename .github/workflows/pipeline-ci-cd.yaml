@@ -1,6 +1,9 @@
 # .github/workflows/pipeline.yml
 name: CI Pipeline
 
+env:
+  ECR_REPOSITORY: ${{ secrets.ECR_NAME }}
+
 on:
   workflow_dispatch:
   push:
@@ -60,9 +63,10 @@ jobs:
   build-and-push:
     name: Build & Push Docker Image to ECR
     needs: sonarcloud
+    if: ${{ github.event_name == 'push' }}
     uses: VotingApp-DevOps-288126-ORT/voting.infra/.github/workflows/build-push-docker-image.yaml@prod
     with:
-      ecr_repository: ${{ secrets.ECR_NAME }}
+      ecr_repository: ${{ env.ECR_REPOSITORY }}
       tag: ${{ github.sha }}
 
 
