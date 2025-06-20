@@ -70,7 +70,7 @@ jobs:
     name: Deploy to Kubernetes
     needs: build-and-push
     if: ${{ github.event_name == 'push' }}
-    uses: VotingApp-DevOps-288126-ORT/voting.infra/.github/workflows/deploy-to-k8s.yaml@prod
+    uses: VotingApp-DevOps-288126-ORT/voting.infra/.github/workflows/deploy-to-k8.yaml@prod
     with:
       cluster_name: cluster-eks-${{ github.ref_name }}  
       manifest_path: ./k8s-specifications/vote-deployment.yaml/                        
