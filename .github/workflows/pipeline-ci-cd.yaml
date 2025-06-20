@@ -73,7 +73,7 @@ jobs:
     uses: VotingApp-DevOps-288126-ORT/voting.infra/.github/workflows/deploy-to-k8.yaml@prod
     with:
       cluster_name: cluster-eks-${{ github.ref_name }}  
-      manifest_path: ./k8s-specifications/vote-deployment.yaml/                        
+      manifest_path: ./k8s-specifications/vote-deployment.yaml                        
       environment: ${{ github.ref_name }}                      
       commit_sha: ${{ github.sha }} 
     secrets: inherit
