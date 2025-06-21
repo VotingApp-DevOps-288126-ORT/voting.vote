@@ -94,6 +94,7 @@ jobs:
       - name: Debug variable
         run: |
           echo "Load Balancer hostname: ${{ needs.deploy.outputs.lb_url }}"
+          echo "Load Balancer hostname: ${{ needs.deploy.outputs }}"
 
       - name: Run Postman Tests
         run: |
