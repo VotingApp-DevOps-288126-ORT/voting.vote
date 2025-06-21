@@ -77,8 +77,6 @@ jobs:
       environment: ${{ github.ref_name }}                      
       commit_sha: ${{ github.sha }} 
     secrets: inherit
-    outputs:
-      lb_url: ${{ steps.deploy.outputs.lb_url }}
 
   test-endpoint:
     name: Run Postman Tests
@@ -93,8 +91,9 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
 
-      - name: Print received Load Balancer URL
-        run: echo "Received LB URL from deploy workflow: ${{ needs.deploy.outputs.lb_url }}"
+      - name: Debug variable
+        run: |
+          echo "Load Balancer hostname: ${{ needs.deploy.outputs.lb_url }}"
 
       - name: Run Postman Tests
         run: |
