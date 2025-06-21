@@ -1,0 +1,22 @@
+{
+  "info": {
+    "_postman_id": "a21cc9b6-165f-455b-85d5-275ec8615865",
+    "name": "Voting.Vote",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "42539748"
+  },
+  "item": [
+    {
+      "name": "GET Index.html",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "host": ["{{baseUrl}}"],
+          "path": ["/vote"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
