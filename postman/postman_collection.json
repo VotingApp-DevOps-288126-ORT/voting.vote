@@ -12,8 +12,9 @@
         "method": "GET",
         "header": [],
         "url": {
+          "protocol": "http",
           "host": ["{{baseUrl}}"],
-          "path": ["/vote"]
+          "path": ["vote"]
         }
       },
       "response": []
