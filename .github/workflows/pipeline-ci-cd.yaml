@@ -77,3 +77,22 @@ jobs:
       environment: ${{ github.ref_name }}                      
       commit_sha: ${{ github.sha }} 
     secrets: inherit
+
+  test-endpoint:
+    name: Run Postman Tests
+    needs: deploy
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Postman Tests
+        run: |
+          newman run postman/postman_collection.json \
+            --env-var "baseUrl=${{ needs.deploy.outputs.lb_url }}" \
+            --delay-request 500 \
+            --timeout-request 10000
