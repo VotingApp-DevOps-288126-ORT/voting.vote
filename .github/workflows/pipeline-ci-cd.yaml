@@ -77,8 +77,6 @@ jobs:
       environment: ${{ github.ref_name }}                      
       commit_sha: ${{ github.sha }} 
     secrets: inherit
-    outputs:
-      lb_url: ${{ steps.deploy.outputs.lb_url }}
 
   test-endpoint:
     name: Run Postman Tests
