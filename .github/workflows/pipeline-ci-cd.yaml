@@ -107,4 +107,5 @@ jobs:
           newman run postman/postman_collection.json \
             --env-var "baseUrl=$(kubectl get ingress voting-ingress -n default -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')" \
             --delay-request 500 \
-            --timeout-request 10000
+            --timeout-request 10000 \
+            --bail
