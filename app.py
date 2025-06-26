@@ -11,7 +11,7 @@ option_a = os.getenv("OPTION_A", "Cats")
 option_b = os.getenv("OPTION_B", "Dogs")
 hostname = socket.gethostname()
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/vote/static",  static_folder="static")
 gunicorn_error_logger = logging.getLogger("gunicorn.error")
 app.logger.handlers.extend(gunicorn_error_logger.handlers)
 app.logger.setLevel(logging.INFO)
