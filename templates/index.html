@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>{{option_a}} vs {{option_b}}!</title>
-    <base href="/vote/">
+    <base href="/index.html">
     <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
     <meta name="keywords" content="docker-compose, docker, stack">
     <meta name="author" content="Tutum dev team">
-    <link rel="stylesheet" href="{{ url_for('static',filename='stylesheets/style.css') }}" />
+    <link rel="stylesheet" href="../static/stylesheets/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
   <body>
@@ -23,7 +23,6 @@
         </div>
         <div id="hostname">
           Processed by container ID {{hostname}}
-          Estamos en dev XD
         </div>
       </div>
     </div>
