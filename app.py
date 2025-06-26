@@ -10,7 +10,7 @@ option_a = os.getenv('OPTION_A', "Cats")
 option_b = os.getenv('OPTION_B', "Dogs")
 hostname = socket.gethostname()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/vote/static')
 
 gunicorn_error_logger = logging.getLogger('gunicorn.error')
 app.logger.handlers.extend(gunicorn_error_logger.handlers)
@@ -21,7 +21,7 @@ def get_redis():
         g.redis = Redis(host="redis", db=0, socket_timeout=5)
     return g.redis
 
-@app.route("/", methods=['POST','GET'])
+@app.route("/vote", methods=['POST','GET'])
 def hello():
     voter_id = request.cookies.get('voter_id')
     if not voter_id:
