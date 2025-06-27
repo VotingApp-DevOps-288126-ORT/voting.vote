@@ -105,7 +105,7 @@ jobs:
       - name: Get LB Address and Run Postman Tests
         run: |
           newman run postman/postman_collection.json \
-            --env-var "baseUrl=$(kubectl get ingress voting-ingress -n default -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')" \
+            --env-var "baseUrl=$(kubectl get services vote-service -n default -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')" \
             --delay-request 500 \
             --timeout-request 10000 \
             --bail
