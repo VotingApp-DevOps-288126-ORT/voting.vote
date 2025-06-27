@@ -14,7 +14,7 @@
         "url": {
           "protocol": "http",
           "host": ["{{baseUrl}}"],
-          "path": ["vote"]
+          "path": [""]
         }
       },
       "response": []
