@@ -109,3 +109,46 @@ jobs:
             --delay-request 500 \
             --timeout-request 10000 \
             --bail
+
+  notify:
+    name: Send deployment notification via Gmail
+    needs: test-endpoint
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
+
+    steps:
+      - name: Build email body
+        id: build_email
+        run: |
+          APP="vote"
+          ENV="${{ github.ref_name }}"
+          COMMIT="${{ github.sha }}"
+          DATE=$(date -u +"%Y-%m-%d %H:%M UTC")
+
+          {
+            echo "✅ Deploy de *${APP}* completado en *${ENV}*"
+            echo
+            echo "🔖 Commit: \`${COMMIT}\`"
+            echo "📅 Fecha: ${DATE}"
+            echo
+            echo "¡Saludos!"
+          } > email_body.txt
+
+          # Exponer el cuerpo como salida
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          cat email_body.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Send email via Gmail SMTP
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER_ADDRESS }}
+          server_port:    ${{ secrets.SMTP_SERVER_PORT }}
+          secure:         true
+          username:       ${{ secrets.GMAIL_USERNAME }}
+          password:       ${{ secrets.GMAIL_APP_PASSWORD }}
+          from:           ${{ secrets.GMAIL_USERNAME }}
+          to:             ${{ secrets.EMAIL_RECIPIENTS }}
+          subject:        "✅ Deploy de vote a ${{ github.ref_name }} exitoso"
+          body:           ${{ steps.build_email.outputs.body }}
+
