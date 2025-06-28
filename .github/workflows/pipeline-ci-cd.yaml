@@ -145,7 +145,6 @@ jobs:
         with:
           server_address: ${{ secrets.SMTP_SERVER_ADDRESS }}
           server_port:    ${{ secrets.SMTP_SERVER_PORT }}
-          secure:         true
           username:       ${{ secrets.GMAIL_USERNAME }}
           password:       ${{ secrets.GMAIL_APP_PASSWORD }}
           from:           ${{ secrets.GMAIL_USERNAME }}
