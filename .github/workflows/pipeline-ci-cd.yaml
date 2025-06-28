@@ -21,7 +21,6 @@ jobs:
 
   lint:
     name: Lint Code with Super-Linter
-    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -31,6 +30,7 @@ jobs:
 
       - name: Run Super-Linter
         uses: github/super-linter@v4
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
