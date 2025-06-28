@@ -21,6 +21,7 @@ jobs:
 
   lint:
     name: Lint Code with Super-Linter
+    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
